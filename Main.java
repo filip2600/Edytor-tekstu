@@ -4,11 +4,10 @@ package application;
 
 import java.awt.BorderLayout;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -22,6 +21,30 @@ public class Main extends Application {
 	
 	Button Plik=new Button("Plik");
 	Pane root = new Pane();
+	int plikklik=0;
+	int narzedziaklik=0;
+	int kolorklik=0;
+	MaleOkienka Plikk;
+	JFrame ramkaplik;
+	JPanel pomocny;
+	JButton nowy;
+	JButton zapisz;
+	JButton zapiszjako;
+	JButton drukuj;
+	JButton zakoncz;
+	
+	MaleOkienka narzedziak;
+	JFrame ramkanarzedzia;
+	JPanel pomocnynarzedzia;	
+	JButton zmienczcionke;
+	
+	
+	MaleOkienka kolork;
+	JFrame ramkakolor;
+	JPanel pomocnykolor;	
+	JButton zmienkolor;
+	
+	
 	
 	public void start(Stage primaryStage) {
 		
@@ -59,27 +82,44 @@ public class Main extends Application {
 	{
 		plik.setOnAction(new EventHandler<ActionEvent>() {		
 			public void handle(ActionEvent event) {
-			 System.out.println("Rozwin liste 1");
-			MaleOkienka plik=new MaleOkienka();
-			plik.przyciskiplik();
-			JFrame ramkaplik=plik.przyciskiplik();
-			JPanel pomocny=new JPanel();		
-			JButton nowy=new Buttons.Plik().Nowy(pomocny);
-		  ramkaplik.add(pomocny,BorderLayout.CENTER);
+				
+				if(plikklik==0)
+				{
+					Plikk=new MaleOkienka();
+					Plikk.przyciskiplik();
+					ramkaplik=Plikk.przyciskiplik();
+					pomocny=new JPanel();		
+					nowy=new Buttons.Plik().Nowy(pomocny);
+					zapisz=new Buttons.Plik().Zapisz(pomocny);
+					zapiszjako=new Buttons.Plik().ZapiszJako(pomocny);
+					drukuj=new Buttons.Plik().Drukuj(pomocny);
+					zakoncz=new Buttons.Plik().Zakoncz(pomocny);
+				  ramkaplik.add(pomocny,BorderLayout.CENTER);
+				  AkcjeKlawiszy f=new AkcjeKlawiszy();
+				  f.nowy(nowy);
+				 
+				  ramkaplik.show();
+				  ramkaplik.toFront();
+				  plikklik=2;
+	  
+				}
+				else if(plikklik==2)
+				  {
+				
+					  ramkaplik.hide();
+					  plikklik--;
+				  }
+				  else if(plikklik==1)
+				  {
+					  ramkaplik.show();
+					  ramkanarzedzia.toFront();
+					  plikklik++;
+				  }
+				
+				  
+				  
 			
 			
-			//nowy.setText("abc");
-			
-			
-			//f=plik.przyciskiplik();
-			
-			
-			 
-			 //tworzy nowe oknko z jakims layoutem
-			 // ponowne klik =zamkniecie
-			//Wstepny plan:w  maleokienko  dowoluje sie do buttons tworzac tam klawisze 
-			//musze zrobic tak by klawisze pojawily sie tutaj w main .
-			//gdy zakoncze ten problem to wrzuta na git
 			 
 			}
 		});
@@ -88,7 +128,39 @@ public class Main extends Application {
 
 		   
 			public void handle(ActionEvent event) {
-				 System.out.println("l2");
+			
+				
+					 
+				  
+				  if(narzedziaklik==0)
+					{
+						narzedziak=new MaleOkienka();
+						narzedziak.przyciskinarzedzia();
+						ramkanarzedzia=narzedziak.przyciskinarzedzia();
+						pomocnynarzedzia=new JPanel();	
+						zmienczcionke=new Buttons.Narzedzia().Zmienczcionke(pomocnynarzedzia);
+					  ramkanarzedzia.add(pomocnynarzedzia,BorderLayout.CENTER);
+					  ramkanarzedzia.show();
+	                 ramkanarzedzia.toFront();
+					  narzedziaklik=2;
+		  
+					}
+					else if(narzedziaklik==2)
+					  {
+					
+						  ramkanarzedzia.hide();
+						 
+						  narzedziaklik--;
+					  }
+					  else if(narzedziaklik==1)
+					  {
+						  ramkanarzedzia.show();
+						  ramkanarzedzia.toFront();
+						  narzedziaklik++;
+					  }
+				  
+				
+				
 			}
 		});
 		
@@ -97,7 +169,37 @@ public class Main extends Application {
 
 			   
 			public void handle(ActionEvent event) {
-				 System.out.println("l3");
+				
+				if(kolorklik==0)
+				{
+					kolork=new MaleOkienka();
+					kolork.przyciskikolory();
+					ramkakolor=kolork.przyciskikolory();
+					pomocnykolor=new JPanel();	
+					zmienkolor=new Buttons.Kolory().Zmienkolor(pomocnykolor);
+				  ramkakolor.add(pomocnykolor,BorderLayout.CENTER);
+				  ramkakolor.show();
+                 ramkakolor.toFront();
+                 kolorklik=2;
+	  
+				}
+				else if(kolorklik==2)
+				  {
+				
+					ramkakolor.hide();
+					 
+					
+					  kolorklik--;
+				  }
+				  else if(kolorklik==1)
+				  {
+					  ramkakolor.show();
+					  ramkakolor.toFront();
+					  kolorklik++;
+				  }
+				
+				
+				
 			}
 		});
 		
@@ -113,6 +215,9 @@ public class Main extends Application {
 		
 	}
 	
+	
+	//stworzyc pustke akcje na wszystkie
+	//stworzyc dzialajace na trzy z pliku
 	
 	public static void main(String[] args) {
 		launch(args);
