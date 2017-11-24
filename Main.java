@@ -3,11 +3,14 @@ package application;
 
 
 import java.awt.BorderLayout;
+import javafx.scene.control.TextField;
+
 
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -16,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class Main extends Application {
 	
@@ -53,9 +57,16 @@ public class Main extends Application {
 			
 			Scene scene = new Scene(root,600,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		   
+		 
 			
 			zarzadzanieplikami();
+			
+			JFrame poletekstu=new JFrame();
+			JTextPane polektestuPane=new JTextPane();
+			poletekstu.setSize(600,550);
+			poletekstu.add(polektestuPane);
+			
+			poletekstu.show();
 			
 			
 			
@@ -95,7 +106,7 @@ public class Main extends Application {
 					drukuj=new Buttons.Plik().Drukuj(pomocny);
 					zakoncz=new Buttons.Plik().Zakoncz(pomocny);
 				  ramkaplik.add(pomocny,BorderLayout.CENTER);
-				 // ustawakcjeklawiszy();
+				ustawakcjeklawiszy();
 				  ramkaplik.show();
 				  ramkaplik.toFront();
 				  plikklik=2;
@@ -131,7 +142,7 @@ public class Main extends Application {
 						pomocnynarzedzia=new JPanel();	
 						zmienczcionke=new Buttons.Narzedzia().Zmienczcionke(pomocnynarzedzia);
 					  ramkanarzedzia.add(pomocnynarzedzia,BorderLayout.CENTER);
-					 // ustawakcjeklawiszy();
+					  ustawakcjeklawiszy();
 					  ramkanarzedzia.show();
 	                 ramkanarzedzia.toFront();
 					  narzedziaklik=2;
@@ -166,7 +177,7 @@ public class Main extends Application {
 					pomocnykolor=new JPanel();	
 					zmienkolor=new Buttons.Kolory().Zmienkolor(pomocnykolor);
 				  ramkakolor.add(pomocnykolor,BorderLayout.CENTER);
-				 // ustawakcjeklawiszy();
+				 ustawakcjeklawiszy();
 				  ramkakolor.show();
                  ramkakolor.toFront();
                  kolorklik=2;
@@ -193,16 +204,22 @@ public class Main extends Application {
 	
 	public void ustawakcjeklawiszy()
 	{
-		 //AkcjeKlawiszy f=new AkcjeKlawiszy();
-		 // f.nowy(nowy);
+		 AkcjeKlawiszy f=new AkcjeKlawiszy();
+		 f.nowy(nowy);
 		  
 	}
 	
 	
 	
 	
-	//stworzyc pustke akcje na wszystkie
+	
 	//stworzyc dzialajace na trzy z pliku
+	// Zrobic tak by plik zapisywal sie jako doc
+	//przekazywana bedzie caly stage glowny? czy to mozliwe ?
+	//jezeli nie to poszczegolnymi elementami
+
+	//wprowadzic jtextpane i opcje zapisu
+	//do tego zapisz jako
 	
 	public static void main(String[] args) {
 		launch(args);
