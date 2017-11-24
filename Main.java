@@ -95,43 +95,34 @@ public class Main extends Application {
 					drukuj=new Buttons.Plik().Drukuj(pomocny);
 					zakoncz=new Buttons.Plik().Zakoncz(pomocny);
 				  ramkaplik.add(pomocny,BorderLayout.CENTER);
-				  AkcjeKlawiszy f=new AkcjeKlawiszy();
-				  f.nowy(nowy);
-				 
+				 // ustawakcjeklawiszy();
 				  ramkaplik.show();
 				  ramkaplik.toFront();
 				  plikklik=2;
+				  
 	  
 				}
 				else if(plikklik==2)
 				  {
 				
 					  ramkaplik.hide();
+					  System.out.println("hide"+plikklik);
 					  plikklik--;
 				  }
 				  else if(plikklik==1)
-				  {
+				  {     System.out.println("show"+plikklik);
 					  ramkaplik.show();
-					  ramkanarzedzia.toFront();
+					  ramkaplik.toFront();
+					  
 					  plikklik++;
 				  }
-				
-				  
-				  
-			
-			
-			 
 			}
 		});
 		
 		narzedzia.setOnAction(new EventHandler<ActionEvent>() {
 
-		   
 			public void handle(ActionEvent event) {
-			
-				
-					 
-				  
+
 				  if(narzedziaklik==0)
 					{
 						narzedziak=new MaleOkienka();
@@ -140,6 +131,7 @@ public class Main extends Application {
 						pomocnynarzedzia=new JPanel();	
 						zmienczcionke=new Buttons.Narzedzia().Zmienczcionke(pomocnynarzedzia);
 					  ramkanarzedzia.add(pomocnynarzedzia,BorderLayout.CENTER);
+					 // ustawakcjeklawiszy();
 					  ramkanarzedzia.show();
 	                 ramkanarzedzia.toFront();
 					  narzedziaklik=2;
@@ -158,13 +150,9 @@ public class Main extends Application {
 						  ramkanarzedzia.toFront();
 						  narzedziaklik++;
 					  }
-				  
-				
-				
 			}
 		});
-		
-		
+
 		kolory.setOnAction(new EventHandler<ActionEvent>() {
 
 			   
@@ -178,6 +166,7 @@ public class Main extends Application {
 					pomocnykolor=new JPanel();	
 					zmienkolor=new Buttons.Kolory().Zmienkolor(pomocnykolor);
 				  ramkakolor.add(pomocnykolor,BorderLayout.CENTER);
+				 // ustawakcjeklawiszy();
 				  ramkakolor.show();
                  ramkakolor.toFront();
                  kolorklik=2;
@@ -197,23 +186,19 @@ public class Main extends Application {
 					  ramkakolor.toFront();
 					  kolorklik++;
 				  }
-				
-				
-				
 			}
 		});
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
+	
+	public void ustawakcjeklawiszy()
+	{
+		 //AkcjeKlawiszy f=new AkcjeKlawiszy();
+		 // f.nowy(nowy);
+		  
+	}
+	
+	
 	
 	
 	//stworzyc pustke akcje na wszystkie

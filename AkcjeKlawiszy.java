@@ -8,16 +8,29 @@ import javax.swing.JButton;
 public class AkcjeKlawiszy {
 
 	public JButton nowy(JButton nowy)
+	{	
+nowy.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e)
 	{
 		
-nowy.addActionListener(new ActionListener() {
-
-	public void actionPerformed(ActionEvent e) {
 		
-		System.out.println("tworzy");
 	}
 });
 return nowy;
 	
 	}
+	public JButton zapisz(JButton zapisz)
+	{	
+zapisz.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e)
+	{
+		
+		
+	}
+});
+return zapisz;
+	
+	}
+	
+	
 }
