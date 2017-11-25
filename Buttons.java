@@ -2,6 +2,7 @@ package application;
 
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import javafx.scene.control.Button;
@@ -46,6 +47,14 @@ public class Buttons {
 	   JButton Drukujjb=new JButton("Drukuj");
 	   pomocny.add(Drukujjb);
 	   return Drukujjb;
+	   
+   }
+   public JButton ZamknijOkienko(JPanel pomocny)
+   {
+	   JButton Zamknij =new JButton("Zamknij tabele");
+	   pomocny.add(Zamknij);
+	   return Zamknij;
+	   
 	   
    }
    public JButton Zakoncz(JPanel pomocny)

@@ -4,15 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import javafx.scene.control.TextArea;
 
 public class AkcjeKlawiszy {
-
+	int plikklik;
+	JFrame ramkaplik;
+TextArea miejscenatekst;
 	public JButton nowy(JButton nowyJB)
 	{	
 nowyJB.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		wykonanieplik a=new wykonanieplik();
+		a.nowy(miejscenatekst);
 		
 	}
 });
@@ -70,6 +76,18 @@ zakonczJB.addActionListener(new ActionListener() {
 	}
 });
 return  zakonczJB;
+	
+	}
+	public JButton ZamknijOkienko(JButton zamknijokienkoJB)
+	{	
+		
+   zamknijokienkoJB.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e)
+	{   
+			ramkaplik.hide();	
+	}
+});
+return  zamknijokienkoJB;
 	
 	}
 	//TERAZ DOTYCZACE NARZEDZI

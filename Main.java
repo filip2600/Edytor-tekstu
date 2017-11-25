@@ -15,6 +15,7 @@ import javax.swing.JTextPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -36,6 +37,7 @@ public class Main extends Application {
 	JButton zapiszjako;
 	JButton drukuj;
 	JButton zakoncz;
+	JButton ZamknijOkienko;
 	
 	MaleOkienka narzedziak;
 	JFrame ramkanarzedzia;
@@ -48,7 +50,7 @@ public class Main extends Application {
 	JPanel pomocnykolor;	
 	JButton zmienkolor;
 	
-	
+	TextArea miejscenatekst;
 	
 	public void start(Stage primaryStage) {
 		
@@ -61,12 +63,16 @@ public class Main extends Application {
 			
 			zarzadzanieplikami();
 			
-			JFrame poletekstu=new JFrame();
-			JTextPane polektestuPane=new JTextPane();
-			poletekstu.setSize(600,550);
-			poletekstu.add(polektestuPane);
 			
-			poletekstu.show();
+			miejscenatekst=new TextArea();
+			miejscenatekst.setTranslateY(35);
+			miejscenatekst.setMinSize(600,565);
+			root.getChildren().add(miejscenatekst);
+			
+			//FileChooser fileChooser = new FileChooser();
+			//fileChooser.setTitle("Open Resource File");
+			//fileChooser.showOpenDialog(primaryStage);
+			//skorzystac z tego
 			
 			
 			
@@ -105,28 +111,28 @@ public class Main extends Application {
 					zapiszjako=new Buttons.Plik().ZapiszJako(pomocny);
 					drukuj=new Buttons.Plik().Drukuj(pomocny);
 					zakoncz=new Buttons.Plik().Zakoncz(pomocny);
+					ZamknijOkienko=new Buttons.Plik().ZamknijOkienko(pomocny);
 				  ramkaplik.add(pomocny,BorderLayout.CENTER);
+				  plikklik++;
 				ustawakcjeklawiszy();
 				  ramkaplik.show();
 				  ramkaplik.toFront();
-				  plikklik=2;
+				  
 				  
 	  
 				}
-				else if(plikklik==2)
-				  {
-				
-					  ramkaplik.hide();
-					  System.out.println("hide"+plikklik);
-					  plikklik--;
-				  }
-				  else if(plikklik==1)
-				  {     System.out.println("show"+plikklik);
-					  ramkaplik.show();
-					  ramkaplik.toFront();
-					  
-					  plikklik++;
-				  }
+				else if(plikklik!=0)
+				{
+					if(ramkaplik.isVisible()==true)
+					{
+						ramkaplik.hide();
+					}
+					else if(ramkaplik.isVisible()==false)
+					{
+						ramkaplik.show();
+						ramkaplik.toFront();
+					}
+				}
 			}
 		});
 		
@@ -142,25 +148,25 @@ public class Main extends Application {
 						pomocnynarzedzia=new JPanel();	
 						zmienczcionke=new Buttons.Narzedzia().Zmienczcionke(pomocnynarzedzia);
 					  ramkanarzedzia.add(pomocnynarzedzia,BorderLayout.CENTER);
+					  narzedziaklik++;
 					  ustawakcjeklawiszy();
 					  ramkanarzedzia.show();
 	                 ramkanarzedzia.toFront();
-					  narzedziaklik=2;
+					  
 		  
 					}
-					else if(narzedziaklik==2)
-					  {
-					
-						  ramkanarzedzia.hide();
-						 
-						  narzedziaklik--;
-					  }
-					  else if(narzedziaklik==1)
-					  {
-						  ramkanarzedzia.show();
-						  ramkanarzedzia.toFront();
-						  narzedziaklik++;
-					  }
+				  else if(narzedziaklik!=0)
+					{
+						if(ramkanarzedzia.isVisible()==true)
+						{
+							ramkanarzedzia.hide();
+						}
+						else if(ramkanarzedzia.isVisible()==false)
+						{
+							ramkanarzedzia.show();
+							ramkanarzedzia.toFront();
+						}
+					}
 			}
 		});
 
@@ -177,26 +183,25 @@ public class Main extends Application {
 					pomocnykolor=new JPanel();	
 					zmienkolor=new Buttons.Kolory().Zmienkolor(pomocnykolor);
 				  ramkakolor.add(pomocnykolor,BorderLayout.CENTER);
+				  kolorklik++;
 				 ustawakcjeklawiszy();
 				  ramkakolor.show();
                  ramkakolor.toFront();
-                 kolorklik=2;
+                 
 	  
 				}
-				else if(kolorklik==2)
-				  {
-				
-					ramkakolor.hide();
-					 
-					
-					  kolorklik--;
-				  }
-				  else if(kolorklik==1)
-				  {
-					  ramkakolor.show();
-					  ramkakolor.toFront();
-					  kolorklik++;
-				  }
+				  else if(kolorklik!=0)
+					{
+						if(ramkakolor.isVisible()==true)
+						{
+							ramkakolor.hide();
+						}
+						else if(ramkakolor.isVisible()==false)
+						{
+							ramkakolor.show();
+							ramkakolor.toFront();
+						}
+					}
 			}
 		});
 		
@@ -205,7 +210,13 @@ public class Main extends Application {
 	public void ustawakcjeklawiszy()
 	{
 		 AkcjeKlawiszy f=new AkcjeKlawiszy();
+		 f.miejscenatekst=miejscenatekst;
+		 f.plikklik=plikklik;
+		 f.ramkaplik=ramkaplik;
 		 f.nowy(nowy);
+		 f.ZamknijOkienko(ZamknijOkienko);
+	
+		 
 		  
 	}
 	
@@ -213,13 +224,14 @@ public class Main extends Application {
 	
 	
 	
-	//stworzyc dzialajace na trzy z pliku
-	// Zrobic tak by plik zapisywal sie jako doc
-	//przekazywana bedzie caly stage glowny? czy to mozliwe ?
-	//jezeli nie to poszczegolnymi elementami
 
-	//wprowadzic jtextpane i opcje zapisu
-	//do tego zapisz jako
+	// naprawic blad
+	//stworzyc caly plik
+	// popatrzec na stary projekt w qt.
+	
+	//jako zwykly button dodac zamknij w kazdej z tabel
+	
+	
 	
 	public static void main(String[] args) {
 		launch(args);
