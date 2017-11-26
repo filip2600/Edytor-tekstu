@@ -43,12 +43,14 @@ public class Main extends Application {
 	JFrame ramkanarzedzia;
 	JPanel pomocnynarzedzia;	
 	JButton zmienczcionke;
+	JButton ZamknijOkienkoN;
 	
 	
 	MaleOkienka kolork;
 	JFrame ramkakolor;
 	JPanel pomocnykolor;	
 	JButton zmienkolor;
+	JButton ZamknijOkienkoK;
 	
 	TextArea miejscenatekst;
 	
@@ -72,7 +74,7 @@ public class Main extends Application {
 			//FileChooser fileChooser = new FileChooser();
 			//fileChooser.setTitle("Open Resource File");
 			//fileChooser.showOpenDialog(primaryStage);
-			//skorzystac z tego
+			
 			
 			
 			
@@ -114,7 +116,7 @@ public class Main extends Application {
 					ZamknijOkienko=new Buttons.Plik().ZamknijOkienko(pomocny);
 				  ramkaplik.add(pomocny,BorderLayout.CENTER);
 				  plikklik++;
-				ustawakcjeklawiszy();
+				ustawakcjeklawiszyplik();
 				  ramkaplik.show();
 				  ramkaplik.toFront();
 				  
@@ -147,9 +149,10 @@ public class Main extends Application {
 						ramkanarzedzia=narzedziak.przyciskinarzedzia();
 						pomocnynarzedzia=new JPanel();	
 						zmienczcionke=new Buttons.Narzedzia().Zmienczcionke(pomocnynarzedzia);
+						ZamknijOkienkoN=new Buttons.Narzedzia().ZamknijOkienko(pomocnynarzedzia);
 					  ramkanarzedzia.add(pomocnynarzedzia,BorderLayout.CENTER);
 					  narzedziaklik++;
-					  ustawakcjeklawiszy();
+					 ustawakcjeklawiszynarzedzia();
 					  ramkanarzedzia.show();
 	                 ramkanarzedzia.toFront();
 					  
@@ -182,9 +185,10 @@ public class Main extends Application {
 					ramkakolor=kolork.przyciskikolory();
 					pomocnykolor=new JPanel();	
 					zmienkolor=new Buttons.Kolory().Zmienkolor(pomocnykolor);
+					ZamknijOkienkoK=new Buttons.Kolory().ZamknijOkienkoK(pomocnykolor);
 				  ramkakolor.add(pomocnykolor,BorderLayout.CENTER);
 				  kolorklik++;
-				 ustawakcjeklawiszy();
+				 ustawakcjeklawiszykolor();
 				  ramkakolor.show();
                  ramkakolor.toFront();
                  
@@ -207,29 +211,42 @@ public class Main extends Application {
 		
 	}
 	
-	public void ustawakcjeklawiszy()
+	public void ustawakcjeklawiszyplik()
 	{
 		 AkcjeKlawiszy f=new AkcjeKlawiszy();
 		 f.miejscenatekst=miejscenatekst;
-		 f.plikklik=plikklik;
 		 f.ramkaplik=ramkaplik;
 		 f.nowy(nowy);
+		 f.zapiszJako(zapiszjako);
 		 f.ZamknijOkienko(ZamknijOkienko);
+		 f.zapisz(zapisz);
+		
+		 
 	
 		 
 		  
 	}
 	
+	public void ustawakcjeklawiszynarzedzia()
+	{
+		AkcjeKlawiszy n=new AkcjeKlawiszy();
+		n.ramkanarzedzia=ramkanarzedzia;
+		n.ZamknijOkienkoN(ZamknijOkienkoN);
+		
+	}
+	public void ustawakcjeklawiszykolor()
+	{
+		AkcjeKlawiszy k=new AkcjeKlawiszy();
+		k.ramkakolory=ramkakolor;
+		k.ZamknijOkienkoK(ZamknijOkienkoK);
+	}
 	
 	
 	
 	
 
-	// naprawic blad
-	//stworzyc caly plik
-	// popatrzec na stary projekt w qt.
+	//dodac wszystkie funkcje z pierwszego
 	
-	//jako zwykly button dodac zamknij w kazdej z tabel
 	
 	
 	

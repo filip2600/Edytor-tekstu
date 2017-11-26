@@ -84,14 +84,21 @@ public class Buttons {
 	   return narzedzia;
    }
    
-   public JButton Zmienczcionke(JPanel pomocny)
+   public JButton Zmienczcionke(JPanel pomocnyn)
    {
 	   JButton zczcionka=new JButton("Zmien czcionke");
-	   pomocny.add(zczcionka);
+	   pomocnyn.add(zczcionka);
 	   return zczcionka;
 	   
    }
    
+   
+   public JButton ZamknijOkienko(JPanel pomocny)
+   {
+	   JButton Zamknij =new JButton("Zamknij tabele");
+	   pomocny.add(Zamknij);
+	   return Zamknij;
+   }
    
    
    
@@ -120,6 +127,12 @@ public class Buttons {
 	   pomocny.add(zkolor);
 	   return zkolor;
 	   
+   }
+   public JButton ZamknijOkienkoK(JPanel pomocnyk)
+   {
+	   JButton Zamknij =new JButton("Zamknij tabele");
+	   pomocnyk.add(Zamknij);
+	   return Zamknij;
    }
    
    

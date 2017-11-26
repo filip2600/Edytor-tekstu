@@ -20,12 +20,7 @@ public class MaleOkienka  {
 	{
 		JFrame panel=new JFrame();
 		panel.setLayout(new BorderLayout());
-		//JPanel pomocny=new JPanel();
-		
-		//JButton p1=new JButton("ABC");
-		//JButton p2=new JButton("2ABC");
-		//pomocny.add(p1);
-		//pomocny.add(p2);
+	
 		
 		
 	
@@ -47,17 +42,12 @@ public class MaleOkienka  {
        //dodac przycisk close
 		
 		
-	};
+	}
 	public JFrame  przyciskinarzedzia()
 	{
 		JFrame panel=new JFrame();
 		panel.setLayout(new BorderLayout());
-		//JPanel pomocny=new JPanel();
 		
-		//JButton p1=new JButton("ABC");
-		//JButton p2=new JButton("2ABC");
-		//pomocny.add(p1);
-		//pomocny.add(p2);
 		
 		
 	
@@ -72,17 +62,14 @@ public class MaleOkienka  {
 		
 		return panel;
 		
-	};
+	}
+	
+	
 	public JFrame  przyciskikolory()
 	{
 		JFrame panel=new JFrame();
 		panel.setLayout(new BorderLayout());
-		//JPanel pomocny=new JPanel();
 		
-		//JButton p1=new JButton("ABC");
-		//JButton p2=new JButton("2ABC");
-		//pomocny.add(p1);
-		//pomocny.add(p2);
 		
 		
 	
@@ -97,7 +84,7 @@ public class MaleOkienka  {
 		
 		return panel;
 		
-	};
+	}
 	
 	
 	
