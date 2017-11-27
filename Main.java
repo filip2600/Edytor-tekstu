@@ -217,9 +217,12 @@ public class Main extends Application {
 		 f.miejscenatekst=miejscenatekst;
 		 f.ramkaplik=ramkaplik;
 		 f.nowy(nowy);
-		 f.zapiszJako(zapiszjako);
-		 f.ZamknijOkienko(ZamknijOkienko);
 		 f.zapisz(zapisz);
+		 f.zapiszJako(zapiszjako);
+		 f.drukuj(drukuj);
+		 f.zakoncz(zakoncz);
+		 f.ZamknijOkienko(ZamknijOkienko);
+		
 		
 		 
 	
@@ -232,6 +235,7 @@ public class Main extends Application {
 		AkcjeKlawiszy n=new AkcjeKlawiszy();
 		n.ramkanarzedzia=ramkanarzedzia;
 		n.ZamknijOkienkoN(ZamknijOkienkoN);
+		n.zmienczcionke(zmienczcionke);
 		
 	}
 	public void ustawakcjeklawiszykolor()

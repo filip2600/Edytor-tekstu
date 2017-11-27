@@ -1,6 +1,7 @@
 package application;
 
 import java.awt.BorderLayout;
+import java.awt.print.PrinterException;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +20,9 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javax.swing.JTextPane;
+
+
 
 
 
@@ -95,6 +96,24 @@ public class wykonanieplik {
 		   try {writer.close();} catch (Exception ex) {/*ignore*/}
 		}
 		
+	}
+	
+	void drukuj(TextArea miejscenatekst)
+	{
+		JTextPane druktekstu=new JTextPane();
+	    druktekstu.setText(miejscenatekst.getText());
+	    try {
+			druktekstu.print();
+		} catch (PrinterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	void zakoncz()
+	{
+		System.exit(0);
 	}
 	
 	

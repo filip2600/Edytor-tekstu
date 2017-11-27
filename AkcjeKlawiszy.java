@@ -64,7 +64,8 @@ return zapiszjakoJB;
 drukujJB.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		wykonanieplik druk=new wykonanieplik();
+		druk.drukuj(miejscenatekst);
 		
 	}
 });
@@ -77,7 +78,8 @@ return  drukujJB;
 zakonczJB.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		wykonanieplik wylacz=new wykonanieplik();
+		wylacz.zakoncz();
 		
 	}
 });
@@ -105,7 +107,8 @@ return  zamknijokienkoJB;
 zmienczcionkeJB.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		wykonanienarzedzia zmianaczcionki=new wykonanienarzedzia();
+		zmianaczcionki.zmienczcionke(miejscenatekst);
 		
 	}
 });
