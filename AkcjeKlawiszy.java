@@ -50,7 +50,7 @@ zapiszjakoJB.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e)
 	{
 		wykonanieplik zapisj=new wykonanieplik();
-		zapisj.zapisjak(miejscenatekst);
+		zapisj.zapisjakwstep(miejscenatekst);
 		
 	}
 });
