@@ -92,6 +92,13 @@ public class Buttons {
 	   
    }
    
+   public JButton Rysuj(JPanel pomocnyn)
+   {
+	   JButton rysujjb=new JButton("Rysuj");
+	   pomocnyn.add(rysujjb);
+	   return rysujjb;
+   }
+   
    
    public JButton ZamknijOkienko(JPanel pomocny)
    {
@@ -115,6 +122,7 @@ public class Buttons {
    {
    public Button tworzkolory(Pane root)
    {
+	   //USUNAC ?
 	   Button kolory=new Button("Kolory");
 	   root.getChildren().add(kolory);
 	   kolory.setTranslateX(107);

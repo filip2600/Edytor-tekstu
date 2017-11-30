@@ -2,14 +2,17 @@ package application;
 	
 
 
-import java.awt.BorderLayout;
-import javafx.scene.control.TextField;
 
+import java.awt.BorderLayout;
+
+import javafx.scene.control.TextField;
+import java.awt.GraphicsEnvironment;
 
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 import javafx.application.Application;
@@ -44,6 +47,7 @@ public class Main extends Application {
 	JPanel pomocnynarzedzia;	
 	JButton zmienczcionke;
 	JButton ZamknijOkienkoN;
+	JButton rysuj;
 	
 	
 	MaleOkienka kolork;
@@ -149,6 +153,7 @@ public class Main extends Application {
 						ramkanarzedzia=narzedziak.przyciskinarzedzia();
 						pomocnynarzedzia=new JPanel();	
 						zmienczcionke=new Buttons.Narzedzia().Zmienczcionke(pomocnynarzedzia);
+						rysuj=new Buttons.Narzedzia().Rysuj(pomocnynarzedzia);
 						ZamknijOkienkoN=new Buttons.Narzedzia().ZamknijOkienko(pomocnynarzedzia);
 					  ramkanarzedzia.add(pomocnynarzedzia,BorderLayout.CENTER);
 					  narzedziaklik++;
@@ -233,9 +238,11 @@ public class Main extends Application {
 	public void ustawakcjeklawiszynarzedzia()
 	{
 		AkcjeKlawiszy n=new AkcjeKlawiszy();
+		n.miejscenatekst=miejscenatekst;
 		n.ramkanarzedzia=ramkanarzedzia;
 		n.ZamknijOkienkoN(ZamknijOkienkoN);
 		n.zmienczcionke(zmienczcionke);
+		n.rysuj(rysuj);
 		
 	}
 	public void ustawakcjeklawiszykolor()

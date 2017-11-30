@@ -107,6 +107,7 @@ return  zamknijokienkoJB;
 zmienczcionkeJB.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e)
 	{
+		
 		wykonanienarzedzia zmianaczcionki=new wykonanienarzedzia();
 		zmianaczcionki.zmienczcionke(miejscenatekst);
 		
@@ -115,6 +116,25 @@ zmienczcionkeJB.addActionListener(new ActionListener() {
 return  zmienczcionkeJB;
 	
 	}
+	
+	public JButton rysuj(JButton rysujJB)
+	{	
+rysujJB.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e)
+	{
+		
+		wykonanienarzedzia rysuj=new wykonanienarzedzia();
+		rysuj.rysuj();
+		
+		
+	}
+});
+return  rysujJB;
+	
+	}
+	
+	
+	
 	
 	
 	public JButton ZamknijOkienkoN(JButton zamknijokienkoNJB)
