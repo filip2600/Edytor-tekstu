@@ -1,15 +1,22 @@
 package application;
 
+
+
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
+
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+
 import java.util.ArrayList;
+
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+
 import java.awt.MouseInfo;
 
 import javax.swing.JButton;
@@ -17,24 +24,26 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import javax.swing.SwingUtilities;
 
 import javafx.scene.control.TextArea;
-import javafx.scene.text.Font;
-import java.awt.Color;
-import java.awt.Dimension;
 
-import javax.swing.SwingUtilities;
+import javafx.scene.text.Font;
+
+
+
 
 public class wykonanienarzedzia extends JPanel {
 
 	int obecnyx;
 	int obecnyy;
 	int i=0;
+	int scieranie=0;
+JFrame ramka;
+	
 	int czykoniecklik=0;
 	ArrayList<Integer> listax=new ArrayList<Integer>();
 	ArrayList <Integer> listay=new ArrayList<Integer>();
-	
 	
 	public void zmienczcionke (TextArea miejscenatekst)
 	{
@@ -74,102 +83,6 @@ public class wykonanienarzedzia extends JPanel {
 		ramkawybor.show();
   		
 	}
-	
-	void rysuj()
-	{
-		
-		obecnyx=0;
-		obecnyy=0;
-		JFrame ramka=new JFrame();
-		ramka.add(this);
-		ramka.setSize(450,450);	
-	
-		
-		
-		this.addMouseListener(new MouseAdapter() {
-			
-			public void mouseReleased(MouseEvent e)
-			{
-				System.out.println("x");
-				wlaczruch();
-				
-				
-				
-				
-				//musi dziedziczyc jFrame by wyszlo malowanie 
-			}
-			});
-		
-		
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		
-		ramka.show();
-	}
-	public void paint(Graphics g) {
-	    super.paint(g);
-	     
-	     g.fillRect(obecnyx, obecnyy, 10, 20);
-	     //po kliknieciu sie zaczyna 
-	
-	}
-	
-	void wlaczruch()
-	{
-		czykoniecklik++;
-		
-		
-
-		
-	if(czykoniecklik<2)
-	{
-		this.addMouseMotionListener(new MouseAdapter() {
-			
-			public void mouseMoved(MouseEvent e)
-			{
-				
-				obecnyx=(int) MouseInfo.getPointerInfo().getLocation().getX();
-				obecnyy=(int) MouseInfo.getPointerInfo().getLocation().getY();
-			repaint();
-				System.out.println(obecnyx);
-				
-				
-				
-				
-				
-				//musi dziedziczyc jFrame by wyszlo malowanie 
-			}
-			});
-	}
-		
-		if(czykoniecklik==2)
-		{
-			//https://stackoverflow.com/questions/9172607/how-do-i-unregister-mouse-listener-of-jpanel
-			MouseMotionListener[] mouseListeners = this.getMouseMotionListeners();
-			for (MouseMotionListener mouseListener : mouseListeners) {
-			   this.removeMouseMotionListener(mouseListener);
-			}
-			
-		}
-			
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	void kliknietyustawczcionke(JTextField wpis)
 	{
 		wpis.addMouseListener(new MouseAdapter() {
@@ -202,13 +115,123 @@ public class wykonanienarzedzia extends JPanel {
 	
 	
 	
+	
+	void rysuj()
+	{
+		
+		obecnyx=0;
+		obecnyy=0;
+		ramka=new JFrame();
+		ramka.add(this);
+		ramka.setSize(450,450);	
+		this.setBackground(Color.white);
+	
+		
+
+		
+	wlaczruch();
+	scieraj();
+
+		ramka.show();
+	}
+	 //@@ 
+	public void paint(Graphics g) {
+		
+		  
+	    super.paint(g);
+	    listax.add(obecnyx);
+	    listay.add(obecnyy);
+	   for(int i=0;i<listax.size();i++)
+	   {
+		   g.drawRect(listax.get(i), listay.get(i)-15, 2, 2);
+		   g.fillRect(listax.get(i), listay.get(i)-15, 2, 2);
+	   }
+	   g.drawRect(obecnyx, obecnyy-15, 2 ,2);	   
+	  
+	    
+	    
+	    System.out.println("niby");
+	     
+	
+	}
+	
+	  
+	//@@
+	void wlaczruch()
+	{
+		
+		this.addMouseMotionListener(new MouseAdapter() {
+			
+			public void mouseDragged(MouseEvent e)
+			{
+				
+				obecnyx=(int) MouseInfo.getPointerInfo().getLocation().getX();
+				obecnyy=(int) MouseInfo.getPointerInfo().getLocation().getY();
+			repaint();
+				
+				
+				
+				
+				
+				
+				//musi dziedziczyc jFrame by wyszlo malowanie 
+			}
+			});
+		
+	}
+	//@@ 
+	void ruchzakonczony()
+	{
+	MouseMotionListener[] x=	this.getMouseMotionListeners();
+	for (MouseMotionListener mouseListener : x) {
+	    this.removeMouseMotionListener(mouseListener);
+	}
+	}
+	
+	void scieraj()
+	{
+		JButton scierajcale=new JButton("Scieraj cale");
+		JButton scierajczesc=new JButton("Scieraj ");
+		this.add(scierajcale);
+		this.add(scierajczesc);
+		
+		scierajcale.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+			
+				listax.clear();
+				listay.clear();
+				obecnyy=99999;
+				repaint();
+			}
+		});
+		
+		scierajczesc.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Scieraj");
+				scieranie=1;
+			
+				
+				
+				
+			}
+		});
+		
+		
+		
+	}
+	
+	
+	
+
+	
 }
 
 
 
-
-
-
-//zrobic to za pomoca pixeli pojedynczych
-//lub 
-//nie dosiega na gore frame przy rysowaniu
+//wprowadzic gumke
+// b i u
+//zaczac kolory
+//zastanowic sie na scieraniem
