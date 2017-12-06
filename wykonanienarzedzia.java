@@ -4,8 +4,9 @@ package application;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
-
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +36,14 @@ import javafx.scene.text.Font;
 
 public class wykonanienarzedzia extends JPanel {
 
+	static int czerwony=0;
+	static int zmianaczer=0;
+	static int niebieski=0;
+static	int zolty=0;
+static 	int zielony=0;
+
+
+	
 	int obecnyx;
 	int obecnyy;
 	int i=0;
@@ -44,6 +53,9 @@ JFrame ramka;
 	int czykoniecklik=0;
 	ArrayList<Integer> listax=new ArrayList<Integer>();
 	ArrayList <Integer> listay=new ArrayList<Integer>();
+	
+	ArrayList<Integer> listaxc=new ArrayList<Integer>();
+	ArrayList <Integer> listayc=new ArrayList<Integer>();
 	
 	public void zmienczcionke (TextArea miejscenatekst)
 	{
@@ -116,33 +128,38 @@ JFrame ramka;
 	
 	
 	
-	void rysuj()
+void rysuj()
 	{
 		
 		obecnyx=0;
 		obecnyy=0;
 		ramka=new JFrame();
+		wlaczruch();
+		scieraj();
+		this.setBackground(Color.white);
 		ramka.add(this);
 		ramka.setSize(450,450);	
-		this.setBackground(Color.white);
+	
 	
 		
 
 		
-	wlaczruch();
-	scieraj();
+	
 
 		ramka.show();
 	}
 	 //@@ 
-	public void paint(Graphics g) {
+ public void paint(Graphics g) {
 		
-		  
-	    super.paint(g);
+	 
+	 if(czerwony==0&&zielony==0&&niebieski==0&&zolty==0)
+	 {
+	  super.paintComponent(g);
 	    listax.add(obecnyx);
 	    listay.add(obecnyy);
 	   for(int i=0;i<listax.size();i++)
 	   {
+		 g.setColor(Color.black);
 		   g.drawRect(listax.get(i), listay.get(i)-15, 2, 2);
 		   g.fillRect(listax.get(i), listay.get(i)-15, 2, 2);
 	   }
@@ -151,9 +168,67 @@ JFrame ramka;
 	    
 	    
 	    System.out.println("niby");
-	     
+	    
+	 }
+	 
+	 
+		  if(czerwony==1)
+		  {
+
+			  g.setColor(Color.red);
+	    		super.paintComponent(g);
+				  //maluje to komponenty  
+				    listaxc.add(obecnyx);
+				    listayc.add(obecnyy);
+				 
+				   for(int i=0;i<listaxc.size();i++)
+				   {
+					
+					   g.drawRect(listaxc.get(i), listayc.get(i)-15, 2, 2);
+					   g.fillRect(listaxc.get(i), listayc.get(i)-15, 2, 2);
+					  
+				   }
+				   
+				   for(int i=0;i<listax.size();i++)
+				   {
+					 g.setColor(Color.black);
+					   g.drawRect(listax.get(i), listay.get(i)-15, 2, 2);
+					   g.fillRect(listax.get(i), listay.get(i)-15, 2, 2);
+				   }
+				   
+				   
+				   
+		
+				   //jak kliknie sie czerwony to zaczyna liczyc x i y
+				   g.drawRect(obecnyx, obecnyy-15, 2 ,2);	
+				//   ustawienia.setPaint(Color.BLACK);
+				
+		  }
+		  else if(niebieski==1)
+		  {
+			 
+		  }
+		  else if(zolty==1)
+		  {
+			 
+		 
+		  }
+		  else if(zielony==1)
+		  {
+			  
+		  }
+		  
+		  
+		  
+			 
+		
+		
+		  
+	     //popracowac nad ta zmiana koloru 
+	    // do usuniecia raczej cala gora 
+		  }
 	
-	}
+	
 	
 	  
 	//@@
@@ -192,8 +267,10 @@ JFrame ramka;
 	{
 		JButton scierajcale=new JButton("Scieraj cale");
 		JButton scierajczesc=new JButton("Scieraj ");
-		this.add(scierajcale);
-		this.add(scierajczesc);
+		JButton olowek=new JButton("Olowek");
+		//this.add(olowek);
+		//this.add(scierajcale);
+		//this.add(scierajczesc);
 		
 		scierajcale.addActionListener(new ActionListener() {
 			
@@ -219,18 +296,29 @@ JFrame ramka;
 			}
 		});
 		
+		olowek.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				scieranie=0;
+				
+			}
+		});
+		
 		
 		
 	}
 	
 	
-	
-
-	
 }
+	
+	
+
+	
 
 
 
+//
 //wprowadzic gumke
 // b i u
 //zaczac kolory

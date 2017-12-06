@@ -250,6 +250,7 @@ public class Main extends Application {
 		AkcjeKlawiszy k=new AkcjeKlawiszy();
 		k.ramkakolory=ramkakolor;
 		k.ZamknijOkienkoK(ZamknijOkienkoK);
+		k.zmienkolor(zmienkolor);
 	}
 	
 	

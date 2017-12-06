@@ -158,7 +158,8 @@ return  zamknijokienkoNJB;
 zmienkolorJB.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		WykonanieKolory wk=new WykonanieKolory();
+		wk.ustaw();
 		
 	}
 });
