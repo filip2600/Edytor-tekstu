@@ -143,12 +143,29 @@ public class Buttons {
 	   return Zamknij;
    }
    
-   
-   
-   
-   
-   
-   
+ 
+   }
+   public static class Dodatki
+   {
+	   public Button B(Pane root)
+	   {
+		   Button b=new Button("B");
+		   root.getChildren().add(b);
+		   return b;
+	   }
+	   public Button I(Pane root)
+	   {
+		   Button i=new Button("I");
+		   root.getChildren().add(i);
+		   return i;
+	   }
+	   public Button U(Pane root)
+	   {
+		   Button u=new Button("U");
+		   root.getChildren().add(u);
+		   return u;
+	   }
+	   
    }
 	
 }

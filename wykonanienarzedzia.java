@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 
 import java.awt.MouseInfo;
@@ -49,13 +52,26 @@ static 	int zielony=0;
 	int i=0;
 	int scieranie=0;
 JFrame ramka;
+JFrame dodatki;
 	
 	int czykoniecklik=0;
-	ArrayList<Integer> listax=new ArrayList<Integer>();
+	ArrayList<Integer> listax=new ArrayList<Integer>();//czarny
 	ArrayList <Integer> listay=new ArrayList<Integer>();
 	
-	ArrayList<Integer> listaxc=new ArrayList<Integer>();
+	ArrayList<Integer> listaxc=new ArrayList<Integer>();//czerw
 	ArrayList <Integer> listayc=new ArrayList<Integer>();
+	
+	ArrayList<Integer> listaxn=new ArrayList<Integer>();//nieb
+	ArrayList <Integer> listayn=new ArrayList<Integer>();
+	
+	
+	ArrayList<Integer> listaxzo=new ArrayList<Integer>();//zolty
+	ArrayList <Integer> listayzo=new ArrayList<Integer>();
+	
+	ArrayList<Integer> listaxzi=new ArrayList<Integer>();//zielony
+	ArrayList <Integer> listayzi=new ArrayList<Integer>();
+	
+
 	
 	public void zmienczcionke (TextArea miejscenatekst)
 	{
@@ -134,8 +150,23 @@ void rysuj()
 		obecnyx=0;
 		obecnyy=0;
 		ramka=new JFrame();
+		ramka.addWindowListener(new WindowAdapter()
+		{
+		    public void windowClosing(WindowEvent e)
+		    {
+		     dodatki.dispose();
+		    }
+		});
+		
+		
+		dodatki=new JFrame();
+		dodatki.setSize(400,80);
+		dodatki.move((ramka.getX())/2,ramka.getY()+420);
+		
+		dodatki.show();
+		
 		wlaczruch();
-		scieraj();
+		scieraj(dodatki);
 		this.setBackground(Color.white);
 		ramka.add(this);
 		ramka.setSize(450,450);	
@@ -154,16 +185,47 @@ void rysuj()
 	 
 	 if(czerwony==0&&zielony==0&&niebieski==0&&zolty==0)
 	 {
-	  super.paintComponent(g);
+	 // super.paintComponent(g);
+		 System.out.println(scieranie);
+		 System.out.println(obecnyx);
+		
+		 if(scieranie==1)
+		 {
+			 System.out.println("Sciera");
+			 for(int i=0;i<listax.size();i++)
+			   {
+				 for(int j=0;j<10;j++)
+				 {
+				 if(listay.get(i)+j==obecnyy-15&&listax.get(i)+j==obecnyx)
+				 {				
+					 listax.remove(i);
+					 listay.remove(i);
+					 }
+					 
+				 
+				 if(listay.get(i)-j==obecnyy-15&&listax.get(i)-j==obecnyx)
+				 {				 
+					 listax.remove(i);
+					 listay.remove(i);
+					 				 
+				 }
+				 }
+				 
+			   }
+			 //moze jakas funkcja na to ?
+			 
+		 }
+		
+		 
+		 if(scieranie==0)
+		 {
+		 
 	    listax.add(obecnyx);
 	    listay.add(obecnyy);
-	   for(int i=0;i<listax.size();i++)
-	   {
-		 g.setColor(Color.black);
-		   g.drawRect(listax.get(i), listay.get(i)-15, 2, 2);
-		   g.fillRect(listax.get(i), listay.get(i)-15, 2, 2);
-	   }
-	   g.drawRect(obecnyx, obecnyy-15, 2 ,2);	   
+		 }
+		 
+	 
+	//   g.drawRect(obecnyx, obecnyy-15, 2 ,2);	   
 	  
 	    
 	    
@@ -175,57 +237,95 @@ void rysuj()
 		  if(czerwony==1)
 		  {
 
-			  g.setColor(Color.red);
-	    		super.paintComponent(g);
+			  
+	    		//super.paintComponent(g);
 				  //maluje to komponenty  
 				    listaxc.add(obecnyx);
 				    listayc.add(obecnyy);
 				 
-				   for(int i=0;i<listaxc.size();i++)
-				   {
-					
-					   g.drawRect(listaxc.get(i), listayc.get(i)-15, 2, 2);
-					   g.fillRect(listaxc.get(i), listayc.get(i)-15, 2, 2);
-					  
-				   }
 				   
-				   for(int i=0;i<listax.size();i++)
-				   {
-					 g.setColor(Color.black);
-					   g.drawRect(listax.get(i), listay.get(i)-15, 2, 2);
-					   g.fillRect(listax.get(i), listay.get(i)-15, 2, 2);
-				   }
-				   
-				   
-				   
-		
 				   //jak kliknie sie czerwony to zaczyna liczyc x i y
-				   g.drawRect(obecnyx, obecnyy-15, 2 ,2);	
+				 //  g.drawRect(obecnyx, obecnyy-15, 2 ,2);	
 				//   ustawienia.setPaint(Color.BLACK);
 				
 		  }
 		  else if(niebieski==1)
 		  {
-			 
+			 listaxn.add(obecnyx);
+			 listayn.add(obecnyy);
 		  }
 		  else if(zolty==1)
 		  {
+			  listaxzo.add(obecnyx);
+				 listayzo.add(obecnyy);
 			 
 		 
 		  }
 		  else if(zielony==1)
 		  {
 			  
+			  listaxzi.add(obecnyx);
+				 listayzi.add(obecnyy);
 		  }
 		  
+		  
+		  
+			super.paintComponent(g);
+			
+			  for(int i=0;i<listax.size();i++)
+			   {
+				 g.setColor(Color.black);
+				   g.drawRect(listax.get(i), listay.get(i)-15, 2, 2);
+				   g.fillRect(listax.get(i), listay.get(i)-15, 2, 2);
+			   }
+			   
+			  //maluje to komponenty  
+			   for(int i=0;i<listaxc.size();i++)
+			   {
+				   g.setColor(Color.red);
+				
+				   g.drawRect(listaxc.get(i), listayc.get(i)-15, 2, 2);
+				   g.fillRect(listaxc.get(i), listayc.get(i)-15, 2, 2);
+				  
+			   }
+			   
+			   for(int i=0;i<listaxn.size();i++)
+			   {
+				   g.setColor(Color.blue);
+				
+				   g.drawRect(listaxn.get(i), listayn.get(i)-15, 2, 2);
+				   g.fillRect(listaxn.get(i), listayn.get(i)-15, 2, 2);
+				  
+			   }
+			   for(int i=0;i<listaxzo.size();i++)
+			   {
+				   g.setColor(Color.yellow);
+				
+				   g.drawRect(listaxzo.get(i), listayzo.get(i)-15, 2, 2);
+				   g.fillRect(listaxzo.get(i), listayzo.get(i)-15, 2, 2);
+				  
+			   }
+			   for(int i=0;i<listaxzi.size();i++)
+			   {
+				   g.setColor(Color.green);
+				
+				   g.drawRect(listaxzi.get(i), listayzi.get(i)-15, 2, 2);
+				   g.fillRect(listaxzi.get(i), listayzi.get(i)-15, 2, 2);
+				  
+			   }
+			   
+			   
+			   
+			   
+			   
+			   
 		  
 		  
 			 
 		
 		
-		  
-	     //popracowac nad ta zmiana koloru 
-	    // do usuniecia raczej cala gora 
+		
+	    //Dodac scieraj calosc lecz do kolory 
 		  }
 	
 	
@@ -250,6 +350,7 @@ void rysuj()
 				
 				
 				//musi dziedziczyc jFrame by wyszlo malowanie 
+			
 			}
 			});
 		
@@ -263,63 +364,68 @@ void rysuj()
 	}
 	}
 	
-	void scieraj()
+	void scieraj(JFrame dodatki)
 	{
 		JButton scierajcale=new JButton("Scieraj cale");
-		JButton scierajczesc=new JButton("Scieraj ");
-		JButton olowek=new JButton("Olowek");
-		//this.add(olowek);
-		//this.add(scierajcale);
-		//this.add(scierajczesc);
-		
+		JButton gumka=new JButton("Gumka");
+		JPanel klawisze=new JPanel();
+		klawisze.add(gumka);
+		klawisze.add(scierajcale);
+		dodatki.add(klawisze,BorderLayout.WEST);
 		scierajcale.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 			
 				listax.clear();
 				listay.clear();
+				listaxc.clear();
+				listayc.clear();
+				listaxn.clear();
+				listayn.clear();
+				listaxzo.clear();
+				listayzo.clear();
+				listaxzi.clear();
+				listayzi.clear();
 				obecnyy=99999;
 				repaint();
 			}
 		});
 		
-		scierajczesc.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Scieraj");
-				scieranie=1;
-			
-				
-				
-				
-			}
-		});
 		
-		olowek.addActionListener(new ActionListener() {
+		
+	
+	gumka.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			scieranie=1;
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				scieranie=0;
-				
-			}
-		});
+			
+		}
+	});
+	
+		
+		
+		
+		
+		
 		
 		
 		
 	}
 	
 	
+
+
 }
 	
-	
 
 	
 
 
 
-//
-//wprowadzic gumke
+
 // b i u
-//zaczac kolory
-//zastanowic sie na scieraniem
+//zapis obrazu
+
+

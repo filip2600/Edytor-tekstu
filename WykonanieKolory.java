@@ -64,8 +64,7 @@ import javax.swing.JPanel;
 				w.zolty=0;
 				w.zielony=0;
 				w.niebieski=0;
-				ArrayList<Integer> listaxt=new ArrayList<Integer>();
-				ArrayList <Integer> listayt=new ArrayList<Integer>();
+				
 		
 			 
 		  

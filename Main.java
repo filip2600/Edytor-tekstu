@@ -75,6 +75,8 @@ public class Main extends Application {
 			miejscenatekst.setMinSize(600,565);
 			root.getChildren().add(miejscenatekst);
 			
+			
+			
 			//FileChooser fileChooser = new FileChooser();
 			//fileChooser.setTitle("Open Resource File");
 			//fileChooser.showOpenDialog(primaryStage);
@@ -91,9 +93,18 @@ public class Main extends Application {
 	public void zarzadzanieplikami()
 	{
 		
+		
+		
+		
 		Button plik=new Buttons.Plik().tworzplik(root);
 	    Button narzedzia=new Buttons.Narzedzia().tworznarzedzia(root);
 	    Button kolory=new Buttons.Kolory().tworzkolory(root);
+	    Button B=new Buttons.Dodatki().B(root);
+	    Button I=new Buttons.Dodatki().I(root);
+	    Button U=new Buttons.Dodatki().U(root);
+	    B.setTranslateX(450);
+	    I.setTranslateX(480);
+	    U.setTranslateX(510);
 	    akcjerozwiniecielisty(plik,narzedzia,kolory);
 		
 		
