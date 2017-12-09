@@ -124,7 +124,16 @@ public class Main extends Application {
 		
 			String stext=miejscenatekst.getSelectedText();
 			miejscenatekst.appendText(stext);
-			
+			if(bz==0)
+			{
+			miejscenatekst.setFont(Font.font("Times new Roman",FontWeight.BOLD,14));
+			bz++;
+			}
+			else
+			{
+				miejscenatekst.setFont(Font.font("Times new Roman",FontWeight.NORMAL,14));
+				bz--;
+			}
 			
 		
 			
@@ -362,5 +371,5 @@ public class Main extends Application {
 
 
 
-//i powrot do olowka
+
 //koncze na tym
