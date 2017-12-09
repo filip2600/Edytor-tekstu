@@ -1,11 +1,14 @@
 package application;
 
 import java.awt.event.ActionEvent;
+import javafx.event.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -15,7 +18,14 @@ public class AkcjeKlawiszy {
 	JFrame ramkaplik;
 	JFrame ramkanarzedzia;
 	JFrame ramkakolory;
+	JButton f;
+
 TextArea miejscenatekst;
+public Button x(Button f)
+{
+	return f;
+}
+
 	public JButton nowy(JButton nowyJB)
 	{	
 nowyJB.addActionListener(new ActionListener() {
@@ -179,6 +189,9 @@ return  zmienkolorJB;
 return  zamknijokienkoKJB;
 	
 	}
+	
+	
+	
 	
 	
 	

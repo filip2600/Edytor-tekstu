@@ -5,15 +5,21 @@ package application;
 
 import java.awt.BorderLayout;
 
+
 import javafx.scene.control.TextField;
 import java.awt.GraphicsEnvironment;
-
+import java.awt.font.TextAttribute;
+import java.text.AttributedCharacterIterator;
+import java.text.AttributedString;
+import java.text.CharacterIterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+
+import com.sun.javafx.scene.traversal.WeightedClosestCorner;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -23,12 +29,18 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+
 
 public class Main extends Application {
 	
 	Button Plik=new Button("Plik");
 	Pane root = new Pane();
+	Scene scene;
 	int plikklik=0;
 	int narzedziaklik=0;
 	int kolorklik=0;
@@ -57,15 +69,18 @@ public class Main extends Application {
 	JButton ZamknijOkienkoK;
 	
 	TextArea miejscenatekst;
+	int bz=0;
+	int iz=0;
+	int uz=0;
 	
 	public void start(Stage primaryStage) {
 		
 		
 		
 			
-			Scene scene = new Scene(root,600,600);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		 
+			scene = new Scene(root,600,600);
+			
+		    
 			
 			zarzadzanieplikami();
 			
@@ -96,12 +111,79 @@ public class Main extends Application {
 		
 		
 		
+
+		
 		Button plik=new Buttons.Plik().tworzplik(root);
 	    Button narzedzia=new Buttons.Narzedzia().tworznarzedzia(root);
 	    Button kolory=new Buttons.Kolory().tworzkolory(root);
 	    Button B=new Buttons.Dodatki().B(root);
+	   B.setOnAction(new EventHandler<ActionEvent>() {
+
+		@Override
+		public void handle(ActionEvent event) {
+		
+			String stext=miejscenatekst.getSelectedText();
+			miejscenatekst.appendText(stext);
+			
+			
+		
+			
+			
+		
+			
+			//czêsc
+			
+			
+			
+		}
+	});
+	    
 	    Button I=new Buttons.Dodatki().I(root);
+	    
+	    I.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				if(iz==0)
+				{
+				miejscenatekst.setFont(Font.font("Times new Roman",FontPosture.ITALIC,14));
+				iz++;
+				}
+				else
+				{
+					miejscenatekst.setFont(Font.font("Times new Roman",FontWeight.NORMAL,14));
+					iz--;
+				}
+				
+				
+			}
+		});
 	    Button U=new Buttons.Dodatki().U(root);
+	    
+	    U.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+		 
+            
+				if(uz==0)
+				{
+					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			  uz++;
+				}
+				else
+				{
+					scene.getStylesheets().clear();
+					uz--;
+				}
+				
+			}
+		});
+	    
+	    
+	    
+	    
+	    
 	    B.setTranslateX(450);
 	    I.setTranslateX(480);
 	    U.setTranslateX(510);
@@ -277,3 +359,8 @@ public class Main extends Application {
 		launch(args);
 	}
 }
+
+
+
+//i powrot do olowka
+//koncze na tym

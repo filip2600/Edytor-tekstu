@@ -20,9 +20,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
-
+import java.io.File;
+import java.io.IOException;
 import java.awt.MouseInfo;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -46,11 +48,13 @@ static	int zolty=0;
 static 	int zielony=0;
 
 
-	
+	int petlawhile=0;
 	int obecnyx;
 	int obecnyy;
 	int i=0;
+	int x=2;
 	int scieranie=0;
+	int nrobrazka=0;
 JFrame ramka;
 JFrame dodatki;
 	
@@ -86,10 +90,10 @@ JFrame dodatki;
 
 			    for ( int i = 0; i < fonts.length; i++ )
 			    {
-			      System.out.println(fonts[i]);
+			     
 			      pojstyle.addItem(fonts[i]);
 			    }
-		System.out.println(pojstyle.getSelectedItem().toString());
+		
 			    
 		zatwierz.addActionListener(new ActionListener() {
 			
@@ -160,7 +164,7 @@ void rysuj()
 		
 		
 		dodatki=new JFrame();
-		dodatki.setSize(400,80);
+		dodatki.setSize(560,80);
 		dodatki.move((ramka.getX())/2,ramka.getY()+420);
 		
 		dodatki.show();
@@ -186,27 +190,42 @@ void rysuj()
 	 if(czerwony==0&&zielony==0&&niebieski==0&&zolty==0)
 	 {
 	 // super.paintComponent(g);
-		 System.out.println(scieranie);
-		 System.out.println(obecnyx);
-		
+		 
+		 int c=x;
 		 if(scieranie==1)
 		 {
-			 System.out.println("Sciera");
+			
 			 for(int i=0;i<listax.size();i++)
 			   {
 				 for(int j=0;j<10;j++)
 				 {
-				 if(listay.get(i)+j==obecnyy-15&&listax.get(i)+j==obecnyx)
+				 if(listay.get(i)+(j*x/2)==obecnyy-15&&listax.get(i)+(j*x/2)==obecnyx)
 				 {				
 					 listax.remove(i);
 					 listay.remove(i);
+					 
+					 c=x;
+					 while(c>2)
+					 {
+						 listax.remove(i+c);
+						 listay.remove(i+c);
+						 c--;
+					 }
 					 }
 					 
 				 
-				 if(listay.get(i)-j==obecnyy-15&&listax.get(i)-j==obecnyx)
+				 if(listay.get(i)-(j*x/2)==obecnyy-15&&listax.get(i)-(j*x/2)==obecnyx)
 				 {				 
 					 listax.remove(i);
 					 listay.remove(i);
+					 
+					 c=x;
+					 while(c>2)
+					 {
+						 listax.remove(i+c);
+						 listay.remove(i+c);
+						 c--;
+					 }
 					 				 
 				 }
 				 }
@@ -229,7 +248,7 @@ void rysuj()
 	  
 	    
 	    
-	    System.out.println("niby");
+	    
 	    
 	 }
 	 
@@ -366,11 +385,19 @@ void rysuj()
 	
 	void scieraj(JFrame dodatki)
 	{
-		JButton scierajcale=new JButton("Scieraj cale");
+		JButton scierajcale=new JButton("Scieraj caly");
 		JButton gumka=new JButton("Gumka");
+		JButton powiekszgumke=new JButton("gumka +");
+		JButton zmniejszgumke=new JButton("gumka -");
+		JButton screen=new JButton("Screen");
+		JButton olowek=new JButton("Olowek");
 		JPanel klawisze=new JPanel();
 		klawisze.add(gumka);
 		klawisze.add(scierajcale);
+		klawisze.add(powiekszgumke);
+		klawisze.add(zmniejszgumke);
+		klawisze.add(screen);
+		klawisze.add(olowek);
 		dodatki.add(klawisze,BorderLayout.WEST);
 		scierajcale.addActionListener(new ActionListener() {
 			
@@ -405,7 +432,62 @@ void rysuj()
 	});
 	
 		
+		powiekszgumke.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				x++;
+			}
+		});
 		
+		zmniejszgumke.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				x--;
+				
+			}
+		});
+		
+		screen.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				BufferedImage img = new BufferedImage(ramka.getWidth(),ramka.getHeight(), BufferedImage.TYPE_INT_RGB);
+				ramka.paint(img.getGraphics());
+				while(petlawhile==0)
+				{
+				File wyjsciowy=new File("Rysunek"+nrobrazka+".png");
+				if(!wyjsciowy.exists() && !wyjsciowy.isDirectory())
+				{
+				
+				try {
+					ImageIO.write(img,"png", wyjsciowy);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				break;
+			}
+				
+				else
+				{
+					nrobrazka++;
+				}
+				}
+			}
+		});
+		
+		olowek.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				scieranie=0;
+				
+			}
+		});
 		
 		
 		
